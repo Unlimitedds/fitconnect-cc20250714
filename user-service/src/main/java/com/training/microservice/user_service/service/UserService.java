@@ -13,22 +13,26 @@ import com.training.microservice.user_service.repository.UserRepository;
 public class UserService {
 
 	@Autowired
-	private UserRepository repository;
+	private UserRepository userRepository;
 	
 	public List<User> getUsers() {
-		return repository.findAll();
+		return userRepository.findAll();
 	}
 	
-	public Optional<User> findUserById(String userId) {
-		return repository.findById(Long.valueOf(userId));
+	public Optional<User> findUserById(Long userId) {
+	    return userRepository.findById(userId);
 	}
 	
-	public User saveUser(User user) {
-		return repository.save(user);
+	public User createUser(User user) {
+		return userRepository.save(user);
 	}	
 	
 	public void deleteUser(String userId) {
-		repository.deleteById(Long.valueOf(userId));
+		userRepository.deleteById(Long.valueOf(userId));
+	}
+	
+	public boolean emailExists(String email) {
+		return userRepository.existsByEmail(email);
 	}
 	
 	/*

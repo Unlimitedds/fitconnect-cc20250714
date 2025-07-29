@@ -16,56 +16,52 @@ import lombok.Data;
 @Data
 public class Booking {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="user_id")
-	private User user;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="user_id")
-	private Course course;
-	
-	private Date bookingDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public Booking() {
-		
-	}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="user_id")
+    private User user;
 
-	public Long getId() {
-		return id;
-	}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="course_id")  // ✅ hier war der Fehler
+    private Course course;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private Date bookingDate;
 
-	public User getUser() {
-		return user;
-	}
+    public Booking() {}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    // Getter/Setter redundant, da @Data, aber ok für Klarheit
+    public Long getId() {
+        return id;
+    }
 
-	public Course getCourse() {
-		return course;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setCourse(Course course) {
-		this.course = course;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public Date getBookingDate() {
-		return bookingDate;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public void setBookingDate(Date bookingDate) {
-		this.bookingDate = bookingDate;
-	}
+    public Course getCourse() {
+        return course;
+    }
 
-	
-	
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Date getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
+    }
 }

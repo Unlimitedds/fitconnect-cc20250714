@@ -19,17 +19,18 @@ public class CourseService {
 		return repository.findAll();
 	}
 	
-	public Optional<Course> findeNachId(String kursId) {
-		return repository.findById(Long.valueOf(kursId));
+	public Optional<Course> findeNachId(Long kursId) {
+	    return repository.findById(kursId);
 	}
 	
 	public Course speichern(Course kurs) {
 		return repository.save(kurs);
 	}	
 	
-	public void loeschen(String kursId) {
-		repository.deleteById(Long.valueOf(kursId));
+	public void loeschen(Long kursId) {
+	    repository.deleteById(kursId);
 	}
+
 	
 	/*
 	public void aktualisieren(Long id, Benutzer neuerBenutzer) {

@@ -1,4 +1,4 @@
-package com.training.microservice.booking_service.model;
+package com.training.microservice.recommendation_service.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,15 +9,14 @@ import lombok.Data;
 
 @Entity			
 @Data
-public class Course {		 // Tabelle in Datenbank 
+public class Recommendation {		 // Tabelle in Datenbank 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	// Primärschlüssel
 	
-	public Course() {
+	public Recommendation() {
 	}
-	
 	
 	public Long getId() {
 		return id;
