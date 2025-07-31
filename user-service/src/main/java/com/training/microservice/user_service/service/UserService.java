@@ -31,8 +31,16 @@ public class UserService {
 		userRepository.deleteById(Long.valueOf(userId));
 	}
 	
+	public Optional<User> findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
+	
 	public boolean emailExists(String email) {
 		return userRepository.existsByEmail(email);
+	}
+
+	public boolean usernameExists(String username) {
+		return userRepository.existsByUsername(username);
 	}
 	
 	/*

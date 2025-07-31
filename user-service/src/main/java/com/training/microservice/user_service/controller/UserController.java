@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.http.HttpStatus;
+
 import com.training.microservice.user_service.model.User;
 import com.training.microservice.user_service.service.UserService;
 
@@ -49,27 +51,47 @@ public class UserController {
 		return checkAndCreateUser(user);
 	}
  
-	@PostMapping("/register")
-	public ResponseEntity<String> registerUser(@RequestBody User user) {
-	    if (userRepository.existsByEmail(user.getEmail())) {
-	        return ResponseEntity.badRequest().body("E-Mail bereits registriert");
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+	    Optional<User> user = userService.findByUsername(request.getUsername());
+	    User dbUser = user.get();
+	    if(dbUser != null && dbUser.getPassword().equals(request.getPassword())) {
+	        User tmp = dbUser;
+	        tmp.setPassword(null);
+	        return ResponseEntity.ok(tmp);
+	    } else {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login fehlgeschlagen");
 	    }
-	    userRepository.save(user);
-	    return ResponseEntity.ok("Registrierung erfolgreich");
 	}
 
- 
-	private ResponseEntity<String> checkAndCreateUser(User user) {
-		// Security
-		if(user.getEmail() == null || !user.getEmail().contains("@")) {
-			return ResponseEntity.badRequest().body("Wrong email format");
-		}
-		
-		if(userService.emailExists(user.getEmail())) {
-			return ResponseEntity.badRequest().body("E-Mail bereits registriert.");
-		}
-		
-		userService.createUser(user);
-		return ResponseEntity.ok("Registrierung erfolgreich!");
+	
+	@PostMapping("/register")
+	public ResponseEntity<String> registerUser(@RequestBody User user) {
+	    return checkAndCreateUser(user);
 	}
+
+	
+	
+	private ResponseEntity<String> checkAndCreateUser(User user) {
+	    if(!user.isTermsAccepted()) {
+	        return ResponseEntity.badRequest().body("AGB müssen akzeptiert werden.");
+	    }
+
+	    // Security
+	    if(user.getEmail() == null || !user.getEmail().contains("@")) {
+	        return ResponseEntity.badRequest().body("Wrong email format");
+	    }
+
+	    if(userService.emailExists(user.getEmail())) {
+	        return ResponseEntity.badRequest().body("E-Mail bereits registriert.");
+	    }
+
+	    if(userService.usernameExists(user.getUsername())) {
+	        return ResponseEntity.badRequest().body("Benutzername ist bereits vergeben.");
+	    }
+
+	    userService.createUser(user);
+	    return ResponseEntity.ok("Registrierung erfolgreich!");
+	}
+
 }

@@ -7,127 +7,127 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
-@Entity			
+@Entity
 @Data
-public class User {		 // Tabelle in Datenbank 
+public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;	// Primärschlüssel
-	
-	//Pflichtfelder
-	private String firstname;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // Pflichtfelder
+    private String firstname;
     private String lastname;
     private String username;
     private String email;
     private String password;
     private boolean termsAccepted;
 
-    //Optionale Felder
+    // Optionale Felder
     private String phone;
     private String birthDate;
     private String gender;
     private String address;
     private String country;
-    
-   public User() {
-	   // TODO Auto-generated constructor stub
-   }
 
-public Long getId() {
-	return id;
-}
+    public User() {
+        // Standard-Konstruktor
+    }
 
-public void setId(Long id) {
-	this.id = id;
-}
+    // Getter und Setter (wenn Lombok nicht verwendet werden soll)
+    public Long getId() {
+        return id;
+    }
 
-public String getFirstname() {
-	return firstname;
-}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-public void setFirstname(String firstname) {
-	this.firstname = firstname;
-}
+    public String getFirstname() {
+        return firstname;
+    }
 
-public String getLastname() {
-	return lastname;
-}
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-public void setLastname(String lastname) {
-	this.lastname = lastname;
-}
+    public String getLastname() {
+        return lastname;
+    }
 
-public String getUsername() {
-	return username;
-}
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
-public void setUsername(String username) {
-	this.username = username;
-}
+    public String getUsername() {
+        return username;
+    }
 
-public String getEmail() {
-	return email;
-}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-public void setEmail(String email) {
-	this.email = email;
-}
+    public String getEmail() {
+        return email;
+    }
 
-public String getPassword() {
-	return password;
-}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-public void setPassword(String password) {
-	this.password = password;
-}
+    public String getPassword() {
+        return password;
+    }
 
-public boolean isTermsAccepted() {
-	return termsAccepted;
-}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-public void setTermsAccepted(boolean termsAccepted) {
-	this.termsAccepted = termsAccepted;
-}
+    public boolean isTermsAccepted() {
+        return termsAccepted;
+    }
 
-public String getPhone() {
-	return phone;
-}
+    public void setTermsAccepted(boolean termsAccepted) {
+        this.termsAccepted = termsAccepted;
+    }
 
-public void setPhone(String phone) {
-	this.phone = phone;
-}
+    public String getPhone() {
+        return phone;
+    }
 
-public String getBirthDate() {
-	return birthDate;
-}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-public void setBirthDate(String birthDate) {
-	this.birthDate = birthDate;
-}
+    public String getBirthDate() {
+        return birthDate;
+    }
 
-public String getGender() {
-	return gender;
-}
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
 
-public void setGender(String gender) {
-	this.gender = gender;
-}
+    public String getGender() {
+        return gender;
+    }
 
-public String getAddress() {
-	return address;
-}
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-public void setAddress(String address) {
-	this.address = address;
-}
+    public String getAddress() {
+        return address;
+    }
 
-public String getCountry() {
-	return country;
-}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-public void setCountry(String country) {
-	this.country = country;
-}
-   
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }
