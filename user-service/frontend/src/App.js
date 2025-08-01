@@ -6,6 +6,10 @@ import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import CourseForm from './components/CourseForm';
+import CourseList from './components/CourseList';
+import EditCourse from './components/EditCourse';
+
 
 function App() {
   // Benutzer aus localStorage laden, wenn vorhanden
@@ -36,6 +40,30 @@ function App() {
 	        </ProtectedRoute>
 	      }
 	    />
+		<Route
+		  path="/course/create"
+		  element={
+		    <ProtectedRoute user={user}>
+		      <CourseForm user={user} />
+		    </ProtectedRoute>
+		  }
+		/>
+		<Route
+		  path="/course/list"
+		  element={
+		    <ProtectedRoute user={user}>
+		      <CourseList />
+		    </ProtectedRoute>
+		  }
+		/>
+		<Route
+		  path="/course/edit/:id"
+		  element={
+		    <ProtectedRoute user={user}>
+		      <EditCourse user={user} />
+		    </ProtectedRoute>
+		  }
+		/>
 	  </Routes>
 	</BrowserRouter>
   );

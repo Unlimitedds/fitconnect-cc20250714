@@ -10,20 +10,6 @@ function LoginForm({ setUser }) {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
  
- /* Original 
- 	const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('http://localhost:8081/api/user/login', formData);
-      setUser(res.data); // Speichert Benutzer im App-State
-      navigate('/dashboard'); // Weiterleitung
-    } catch (err) {
-      setMessage('Login fehlgeschlagen');
-    }
-  };
-  */
- 
-  // geänderte Version
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
